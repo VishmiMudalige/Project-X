@@ -2,3 +2,4 @@
 app.js
 Components/Layout/Header.js
 Components/MainTabs/*
+Components/DrawerContent.js

@@ -177,24 +177,48 @@ const SignoutStackScreen = ({navigation}) => (
     </SignoutStack.Navigator>
 );
 
+function MenuSingleItem({focused,size,icon}){
+    return(
+        <View
+            style={
+                focused
+                    ? {
+                        borderLeftColor: '#009387',
+                        borderLeftWidth: 2,
+                        paddingLeft: 5,
+                    }
+                    : null
+            }>
+            <Icon
+                name={icon}
+                size={size}
+                color={focused ? '#009387' : 'grey'}
+            />
+        </View>
+    )
+}
+
 export default function App() {
     StatusBar.setBarStyle('light-content', true);
     StatusBar.setBackgroundColor('#009387');
-    
-    if (1===1) {    
-        return (<PaperProvider >
+
+    return (
+        <PaperProvider >
+
             <NavigationContainer>
+
                 <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />}>
-                    <Drawer.Screen name="Home" component={HomeStackScreen} />
-                    <Drawer.Screen name="Profile" component={ProfileStackScreen} />
-                    <Drawer.Screen name="Purchase" component={PurchaseStackScreen} />
+                    <Drawer.Screen name="HomeDrawer" component={HomeStackScreen} />
+                    <Drawer.Screen name="SupportScreen" component={HomeStackScreen} />
+                    <Drawer.Screen name="SettingsScreen" component={HomeStackScreen} />
                     <Drawer.Screen name="BookmarkScreen" component={HomeStackScreen} />
                 </Drawer.Navigator>
+
+
             </NavigationContainer>
-        </PaperProvider>) ; }else{
-            return (<View><Text>Loggin Screen</Text></View>);
-        }  
-    
-    
+
+        </PaperProvider>
+    );
 }
+
 
