@@ -2,4 +2,8 @@
 app.js
 Components/Layout/Header.js
 Components/MainTabs/*
+Components/user
 Components/DrawerContent.js
+Components/BottomNavItems
+Components/Layout
+Components/LoadingScreen

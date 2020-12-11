@@ -72,13 +72,7 @@ const SignupScreen = ({navigation}) => {
             onPress={() => {}}
           />
     
-          <SocialButton
-            buttonTitle="Sign Up with Google"
-            btnType="google"
-            color="#de4d41"
-            backgroundColor="#f5e7ea"
-            onPress={() => {}}
-          />
+          
         </View>
       ) : null}
 
