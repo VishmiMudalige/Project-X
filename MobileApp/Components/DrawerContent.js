@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
     useTheme,
     Avatar,
@@ -18,7 +19,9 @@ import {
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-
+async function clearAsyncStorage(){
+    AsyncStorage.clear();
+}
 
 export function DrawerContent(props) {
 
@@ -76,13 +79,35 @@ export function DrawerContent(props) {
                         <DrawerItem
                             icon={({color, size}) => (
                                 <Icon
-                                    name="account-outline"
+                                    name="calendar-check"
                                     color={color}
                                     size={size}
                                 />
                             )}
-                            label="Purchase"
+                            label="Purchase History"
                             onPress={() => {props.navigation.navigate('Purchase')}}
+                        />
+                        <DrawerItem
+                            icon={({color, size}) => (
+                                <Icon
+                                    name="hammer-wrench"
+                                    color={color}
+                                    size={size}
+                                />
+                            )}
+                            label="Settings"
+                            onPress={() => {props.navigation.navigate('Settings')}}
+                        />
+                        <DrawerItem
+                            icon={({color, size}) => (
+                                <Icon
+                                    name="head-question-outline"
+                                    color={color}
+                                    size={size}
+                                />
+                            )}
+                            label="Help & feedback"
+                            onPress={() => {props.navigation.navigate('FeedBack')}}
                         />
                     </Drawer.Section>
                     <Drawer.Section title="Preferences">
@@ -107,7 +132,7 @@ export function DrawerContent(props) {
                         />
                     )}
                     label="Sign Out"
-                    onPress={() => {console.log(5)}}
+                    onPress={clearAsyncStorage}
                 />
             </Drawer.Section>
         </View>

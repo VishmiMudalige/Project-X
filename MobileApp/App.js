@@ -1,32 +1,24 @@
-import * as React from 'react';
+import React, { useState, useEffect }  from 'react';
 import {StatusBar, Text, View} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import HomeScreen from "./Components/MainTabs/Home";
-import NotificationsScreen from "./Components/MainTabs/Notification";
 import {DrawerContent} from './Components/DrawerContent';
+import LoadingScreen from "./Components/LoadingScreen/LoadingScreen";
 import {
     Provider as PaperProvider,
-    DefaultTheme as PaperDefaultTheme,
-    DarkTheme as PaperDarkTheme
 } from 'react-native-paper';
-
 
 import Profile from "./Components/MainTabs/Profile";
 import Purchase from "./Components/MainTabs/Purchase";
-import Help from "./Components/MainTabs/Help";
-import Locate from "./Components/MainTabs/Locate";
-import Payment from "./Components/MainTabs/Payment";
-import Share from "./Components/MainTabs/Share";
-import Connect from "./Components/MainTabs/Connect";
 import Settings from "./Components/MainTabs/Settings";
-import Visitus from "./Components/MainTabs/Visitus";
-import Report from "./Components/MainTabs/Report";
 import Feedback from "./Components/MainTabs/Feedback";
-import Signout from "./Components/MainTabs/Signout";
+import LoginScreen from "./Components/User/Login";
+import SignupScreen from "./Components/User/Signup";
 
 const Drawer = createDrawerNavigator();
 const HomeStack = createStackNavigator();
@@ -34,17 +26,7 @@ const ProfileStack = createStackNavigator();
 const PurchaseStack = createStackNavigator();
 const HelpStack = createStackNavigator();
 const LocateStack = createStackNavigator();
-const PaymentStack = createStackNavigator();
-const ShareStack = createStackNavigator();
-const ConnectStack = createStackNavigator();
-const SettingsStack = createStackNavigator();
-const VisitusStack = createStackNavigator();
-const ReportStack = createStackNavigator();
-const FeedbackStack = createStackNavigator();
-const SignoutStack = createStackNavigator();
-
-const NotificationStack = createStackNavigator();
-
+const Stack = createStackNavigator();
 
 const HomeStackScreen = ({navigation}) => (
     <HomeStack.Navigator screenOptions={{
@@ -77,124 +59,99 @@ const PurchaseStackScreen = ({navigation}) => (
 );
 
 
-const HelpStackScreen = ({navigation}) => (
+const SettingsStackScreen = ({navigation}) => (
     <HelpStack.Navigator screenOptions={{
         headerStyle: {backgroundColor: '#009387'},
         headerTintColor: '#fff',
         headerTitleStyle: {fontWeight: 'normal'}
     }}>
-        <HelpStack.Screen name="Help" component={Help} options={{title: 'Help', headerLeft: () => (<Icon.Button name="ios-menu" size={25} backgroundColor="#009387" onPress={() => navigation.openDrawer()}/>) }} />
+        <HelpStack.Screen name="Settings" component={Settings} options={{title: 'Settings', headerLeft: () => (<Icon.Button name="ios-menu" size={25} backgroundColor="#009387" onPress={() => navigation.openDrawer()}/>) }} />
     </HelpStack.Navigator>
 );
 
-const LocateStackScreen = ({navigation}) => (
+const FeedBackStackScreen = ({navigation}) => (
     <LocateStack.Navigator screenOptions={{
         headerStyle: {backgroundColor: '#009387'},
         headerTintColor: '#fff',
         headerTitleStyle: {fontWeight: 'normal'}
     }}>
-        <LocateStack.Screen name="Locate" component={Locate} options={{title: 'Locate', headerLeft: () => (<Icon.Button name="ios-menu" size={25} backgroundColor="#009387" onPress={() => navigation.openDrawer()}/>) }} />
+        <LocateStack.Screen name="Feedback" component={Feedback} options={{title: 'Feedback', headerLeft: () => (<Icon.Button name="ios-menu" size={25} backgroundColor="#009387" onPress={() => navigation.openDrawer()}/>) }} />
     </LocateStack.Navigator>
 );
 
-const PaymentStackScreen = ({navigation}) => (
-    <PaymentStack.Navigator screenOptions={{
-        headerStyle: {backgroundColor: '#009387'},
-        headerTintColor: '#fff',
-        headerTitleStyle: {fontWeight: 'normal'}
-    }}>
-        <PaymentStack.Screen name="Payment" component={Payment} options={{title: 'Payments', headerLeft: () => (<Icon.Button name="ios-menu" size={25} backgroundColor="#009387" onPress={() => navigation.openDrawer()}/>) }} />
-    </PaymentStack.Navigator>
-);
-
-const ShareStackScreen = ({navigation}) => (
-    <ShareStack.Navigator screenOptions={{
-        headerStyle: {backgroundColor: '#009387'},
-        headerTintColor: '#fff',
-        headerTitleStyle: {fontWeight: 'normal'}
-    }}>
-        <ShareStack.Screen name="Share" component={Share} options={{title: 'Share', headerLeft: () => (<Icon.Button name="ios-menu" size={25} backgroundColor="#009387" onPress={() => navigation.openDrawer()}/>) }} />
-    </ShareStack.Navigator>
-);
-
-const ConnectStackScreen = ({navigation}) => (
-    <ConnectStack.Navigator screenOptions={{
-        headerStyle: {backgroundColor: '#009387'},
-        headerTintColor: '#fff',
-        headerTitleStyle: {fontWeight: 'normal'}
-    }}>
-        <ConnectStack.Screen name="Connect" component={Connect} options={{title: 'Connect', headerLeft: () => (<Icon.Button name="ios-menu" size={25} backgroundColor="#009387" onPress={() => navigation.openDrawer()}/>) }} />
-    </ConnectStack.Navigator>
-);
-
-const SettingStackScreen = ({navigation}) => (
-    <SettingsStack.Navigator screenOptions={{
-        headerStyle: {backgroundColor: '#009387'},
-        headerTintColor: '#fff',
-        headerTitleStyle: {fontWeight: 'normal'}
-    }}>
-        <SettingsStack.Screen name="settings" component={Settings} options={{title: 'Settings', headerLeft: () => (<Icon.Button name="ios-menu" size={25} backgroundColor="#009387" onPress={() => navigation.openDrawer()}/>) }} />
-    </SettingsStack.Navigator>
-);
-
-const VisitStackScreen = ({navigation}) => (
-    <VisitusStack.Navigator screenOptions={{
-        headerStyle: {backgroundColor: '#009387'},
-        headerTintColor: '#fff',
-        headerTitleStyle: {fontWeight: 'normal'}
-    }}>
-        <VisitusStack.Screen name="visit" component={Visitus} options={{title: 'Visit Us', headerLeft: () => (<Icon.Button name="ios-menu" size={25} backgroundColor="#009387" onPress={() => navigation.openDrawer()}/>) }} />
-    </VisitusStack.Navigator>
-);
-
-const ReportStackScreen = ({navigation}) => (
-    <ReportStack.Navigator screenOptions={{
-        headerStyle: {backgroundColor: '#009387'},
-        headerTintColor: '#fff',
-        headerTitleStyle: {fontWeight: 'normal'}
-    }}>
-        <ReportStack.Screen name="visit" component={Report} options={{title: 'Report', headerLeft: () => (<Icon.Button name="ios-menu" size={25} backgroundColor="#009387" onPress={() => navigation.openDrawer()}/>) }} />
-    </ReportStack.Navigator>
-);
-
-const FeedbackStackScreen = ({navigation}) => (
-    <FeedbackStack.Navigator screenOptions={{
-        headerStyle: {backgroundColor: '#009387'},
-        headerTintColor: '#fff',
-        headerTitleStyle: {fontWeight: 'normal'}
-    }}>
-        <FeedbackStack.Screen name="visit" component={Feedback} options={{title: 'Feedback', headerLeft: () => (<Icon.Button name="ios-menu" size={25} backgroundColor="#009387" onPress={() => navigation.openDrawer()}/>) }} />
-    </FeedbackStack.Navigator>
-);
-
-const SignoutStackScreen = ({navigation}) => (
-    <SignoutStack.Navigator screenOptions={{
-        headerStyle: {backgroundColor: '#009387'},
-        headerTintColor: '#fff',
-        headerTitleStyle: {fontWeight: 'normal'}
-    }}>
-        <SignoutStack.Screen name="visit" component={Signout} options={{title: 'Sign Out', headerLeft: () => (<Icon.Button name="ios-menu" size={25} backgroundColor="#009387" onPress={() => navigation.openDrawer()}/>) }} />
-    </SignoutStack.Navigator>
-);
+const _retrieveData = async (key) => {
+      try {
+        const data = await AsyncStorage.getItem(key);
+        return data;
+      } catch (error) {
+        console.log(error);
+      }
+    }
 
 export default function App() {
     StatusBar.setBarStyle('light-content', true);
     StatusBar.setBackgroundColor('#009387');
     
-    if (1===1) {    
+    
+    const [isLoading, setIsLoading] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+       setTimeout(() => {
+   	   setIsLoading(false);
+       }, 3000);
+    });
+    
+    useEffect(() => {
+        setInterval(() => {
+   	    _retrieveData('loginToken').then((user)=>{
+   	    if(user !== undefined && user !== null){
+   	       setIsLoggedIn(true);
+   	    }else{
+   	       setIsLoggedIn(false);
+   	    }
+     
+     });  
+   	   
+       }, 1000);
+    });
+    
+    
+    
+
+    if(isLoading){
+        return (<LoadingScreen />);
+    }else if (isLoggedIn) {
         return (<PaperProvider >
             <NavigationContainer>
                 <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />}>
                     <Drawer.Screen name="Home" component={HomeStackScreen} />
                     <Drawer.Screen name="Profile" component={ProfileStackScreen} />
                     <Drawer.Screen name="Purchase" component={PurchaseStackScreen} />
-                    <Drawer.Screen name="BookmarkScreen" component={HomeStackScreen} />
+                    <Drawer.Screen name="Settings" component={SettingsStackScreen} />
+                    <Drawer.Screen name="FeedBack" component={FeedBackStackScreen} />
+
                 </Drawer.Navigator>
             </NavigationContainer>
-        </PaperProvider>) ; }else{
-            return (<View><Text>Loggin Screen</Text></View>);
-        }  
-    
-    
+        </PaperProvider>) ;
+     }else{
+            return (
+                  <NavigationContainer>
+      <Stack.Navigator screenOptions={{
+    headerShown: false
+  }}>
+        <Stack.Screen 
+          name="LoginScreen"
+          component={LoginScreen}
+          options={{ title: 'Welcome' }}
+        />
+        <Stack.Screen name="SignupScreen" component={SignupScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+                  
+         );
+      }
+
+
 }
 
