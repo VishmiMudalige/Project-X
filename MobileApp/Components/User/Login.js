@@ -1,17 +1,15 @@
-import React, { useState} from 'react';
+import React from 'react';
+import * as Animatable from 'react-native-animatable';
+import LinearGradient from 'react-native-linear-gradient';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Feather from 'react-native-vector-icons/Feather';
+import {View, Text, TouchableOpacity, TextInput, Platform, StyleSheet, StatusBar, ScrollView} from 'react-native';
+import { GoogleSignin, GoogleSigninButton } from "@react-native-community/google-signin";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-} from 'react-native';
-import FormInput from './components/FormInput';
-import FormButton from './components/FormButton';
-import SocialButton from './components/SocialButton';
+
+
+
+import {useTheme} from 'react-native-paper';
 
 const _storeData = async () => {
   try {
@@ -21,106 +19,229 @@ const _storeData = async () => {
   }
 }
 
+const SignInScreen = ({navigation}) => {
 
-const LoginScreen = ({navigation}) => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+    const [data, setData] = React.useState({
+        username: '',
+        password: '',
+        check_textInputChange: false,
+        secureTextEntry: true,
+        isValidUser: true,
+        isValidPassword: true,
+    });
 
-  return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Image
-        source={require('./icon.png')}
-        style={styles.logo}
-      />
-      <Text style={styles.text}></Text>
+    const {colors} = useTheme();
 
-      <FormInput
-        labelValue={email}
-        onChangeText={(userEmail) => setEmail(userEmail)}
-        placeholderText="Email"
-        iconType="user"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        autoCorrect={false}
-      />
-      
 
-      <FormInput
-        labelValue={password}
-        onChangeText={(userPassword) => setPassword(userPassword)}
-        placeholderText="Password"
-        iconType="lock"
-        secureTextEntry={true}
-      />
+    return (
+        <View style={{
+            flex: 1,
+            backgroundColor: '#3c5898',
+        }}>
+            <StatusBar backgroundColor='#3c5898' barStyle="light-content"/>
+            <View style={{
+                    flex: 1,
+        	    justifyContent: 'flex-end',
+                    paddingHorizontal: 20,
+                    paddingBottom: 50,
+                }}>
+                <Text style={{color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 30}}>Hello!</Text>
+            
+            </View>
+           
+            <Animatable.View
+                animation="fadeInLeft"
+                style={{
+                    backgroundColor: "#fff",
+                    marginLeft:10,
+                    marginRight:10,
+ 		    marginBottom: 10,
+	            flex: 6,
+                    borderTopLeftRadius: 3,
+                    borderTopRightRadius: 50,
+                     borderBottomLeftRadius: 50,
+		    borderBottomRightRadius: 3,
+                    paddingHorizontal: 20,
+                    paddingVertical: 30,
+                }}
+            >
+                 <ScrollView>
+                
+                <View style={styles.action}>
+                    <FontAwesome
+                        name="user-o"
+                        color={colors.text}
+                        size={20}
+                    />
+                    <TextInput
+                        placeholder="Your Username"
+                        placeholderTextColor="#666666"
+                        style={[styles.textInput, {
+                            color: colors.text,
+                        }]}
+                        autoCapitalize="none"
+                        onChangeText={() => {
+                        }}
+                        onEndEditing={() => {
+                        }}
+                    />
+                    {data.check_textInputChange ?
+                        <Animatable.View
+                            animation="bounceIn"
+                        >
+                            <Feather
+                                name="check-circle"
+                                color="green"
+                                size={20}
+                            />
+                        </Animatable.View>
+                        : null}
+                </View>
+                {data.isValidUser ? null :
+                    <Animatable.View animation="fadeInLeft" duration={500}>
+                        <Text style={styles.errorMsg}>Username must be 4 characters long.</Text>
+                    </Animatable.View>
+                }
 
-      <FormButton
-        buttonTitle="Sign In"
-        onPress={_storeData}
-      />
 
-      <TouchableOpacity style={styles.forgotButton} onPress={() => {}}>
-        <Text style={styles.navButtonText}>Forgot Password?</Text>
-      </TouchableOpacity>
-      
-       {Platform.OS === 'android' ? (
-        <View>
-          <SocialButton
-            buttonTitle="Sign In with Facebook"
-            btnType="facebook"
-            color="#4867aa"
-            backgroundColor="#e6eaf4"
-            onPress={() => {}}
-          />
-    
-          
+                <Text style={[styles.text_footer, {
+                    color: colors.text,
+                    marginTop: 35,
+                }]}></Text>
+                <View style={styles.action}>
+                    <Feather
+                        name="lock"
+                        color={colors.text}
+                        size={20}
+                    />
+                    <TextInput
+                        placeholder="Your Password"
+                        placeholderTextColor="#666666"
+                        secureTextEntry={data.secureTextEntry}
+                        style={[styles.textInput, {
+                            color: colors.text,
+                        }]}
+                        autoCapitalize="none"
+                        onChangeText={() => {
+                        }}
+                    />
+                    <TouchableOpacity
+                        onPress={() => {
+                        }}
+                    >
+                        {data.secureTextEntry ?
+                            <Feather
+                                name="eye-off"
+                                color="grey"
+                                size={20}
+                            />
+                            :
+                            <Feather
+                                name="eye"
+                                color="grey"
+                                size={20}
+                            />
+                        }
+                    </TouchableOpacity>
+               
+                </View>
+                {data.isValidPassword ? null :
+                    <Animatable.View animation="fadeInLeft" duration={500}>
+                        <Text style={styles.errorMsg}>Password must be 8 characters long.</Text>
+                    </Animatable.View>
+                }
+
+
+                <TouchableOpacity>
+                    <Text style={{color: '#3c5898', marginTop: 15}}>Forgot password?</Text>
+                </TouchableOpacity>
+                <View style={styles.button}>
+                    <TouchableOpacity
+                        style={styles.signIn}
+                        onPress={_storeData}
+                    >
+                        <LinearGradient
+                            colors={['#3c5898', '#0088cc']}
+                            style={styles.signIn}
+                        >
+                            <Text style={[styles.textSign, {
+                                color: '#fff',
+                            }]}>Sign In</Text>
+                        </LinearGradient>
+                    </TouchableOpacity>
+                    
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('SignupScreen')}
+                        style={[styles.signIn, {
+                            borderColor: '#3c5898',
+                            borderWidth: 1,
+                            marginTop: 15,
+                        }]}
+                    >
+                        <Text style={[styles.textSign, {
+                            color: '#3c5898',
+                        }]}>Sign Up</Text>
+                    </TouchableOpacity>
+                </View>
+                 <View  style={{ alignItems: "center" }}>
+               <GoogleSigninButton style={{ width: 192, height: 48, marginTop: 10 }}
+    size={GoogleSigninButton.Size.Wide}
+    color={GoogleSigninButton.Color.Light}
+    onPress={() => {}}/>
+            </View>
+            </ScrollView>
+            </Animatable.View>
         </View>
-      ) : null}
-
-
-     
-      <TouchableOpacity
-        style={styles.forgotButton}
-        onPress={() => navigation.navigate('SignupScreen')}>
-        <Text style={styles.navButtonText}>
-          Don't have an acount? Create here
-        </Text>
-      </TouchableOpacity>
-    </ScrollView>
-  );
+    );
 };
 
-export default LoginScreen;
+export default SignInScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-    paddingTop: 50,
-    backgroundColor: '#009387',
-    flex:1
-  },
-  logo: {
-    height: 100,
-    width: 100,
-    resizeMode: 'cover',
-  },
-  text: {
-    fontFamily: 'Kufam-SemiBoldItalic',
-    fontSize: 28,
-    marginBottom: 10,
-    color: '#051d5f',
-  },
-  navButton: {
-    marginTop: 15,
-  },
-  forgotButton: {
-    marginVertical: 35,
-  },
-  navButtonText: {
-    fontSize: 13,
-    fontWeight: '500',
-    color: '#fff',
-    fontFamily: 'Lato-Regular',
-  },
+    headText: {
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 30,
+    },
+    action: {
+        flexDirection: 'row',
+        marginTop: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#f2f2f2',
+        paddingBottom: 5,
+    },
+    actionError: {
+        flexDirection: 'row',
+        marginTop: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#FF0000',
+        paddingBottom: 5,
+    },
+    textInput: {
+        flex: 1,
+        marginTop: -12,
+        paddingLeft: 10,
+        color: '#05375a',
+    },
+    errorMsg: {
+        color: '#FF0000',
+        fontSize: 14,
+    },
+    button: {
+        alignItems: 'center',
+        marginTop: 50,
+    },
+    signIn: {
+        width: '100%',
+        height: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10,
+    },
+    textSign: {
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
 });
