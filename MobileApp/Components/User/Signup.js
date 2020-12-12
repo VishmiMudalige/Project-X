@@ -19,7 +19,7 @@ const SignInScreen = ({navigation}) => {
 
     return (
       <View style={styles.container}>
-          <StatusBar backgroundColor='#3c5898' barStyle="light-content"/>
+          <StatusBar backgroundColor='#2e8b57' barStyle="light-content"/>
         <View style={styles.header}>
             <Text style={styles.text_header}>Register</Text>
         </View>
@@ -32,7 +32,7 @@ const SignInScreen = ({navigation}) => {
             <View style={styles.action}>
                 <FontAwesome
                     name="user-o"
-                    color="#3c5898"
+                    color="#2e8b57"
                     size={20}
                 />
                 <TextInput
@@ -60,7 +60,7 @@ const SignInScreen = ({navigation}) => {
             <View style={styles.action}>
                 <Feather
                     name="lock"
-                    color="#3c5898"
+                    color="#2e8b57"
                     size={20}
                 />
                 <TextInput
@@ -95,7 +95,7 @@ const SignInScreen = ({navigation}) => {
             <View style={styles.action}>
                 <Feather
                     name="lock"
-                    color="#3c5898"
+                    color="#2e8b57"
                     size={20}
                 />
                 <TextInput
@@ -137,7 +137,7 @@ const SignInScreen = ({navigation}) => {
                     onPress={() => {}}
                 >
                 <LinearGradient
-                    colors={['#3c5898', '#0088cc']}
+                    colors={['#2e8b57', '#00b488']}
                     style={styles.signIn}
                 >
                     <Text style={[styles.textSign, {
@@ -149,13 +149,13 @@ const SignInScreen = ({navigation}) => {
                 <TouchableOpacity
                     onPress={() => navigation.goBack()}
                     style={[styles.signIn, {
-                        borderColor: '#3c5898',
+                        borderColor: '#00b488',
                         borderWidth: 1,
                         marginTop: 15
                     }]}
                 >
                     <Text style={[styles.textSign, {
-                        color: '#3c5898'
+                        color: '#00b488'
                     }]}>Sign In</Text>
                 </TouchableOpacity>
             </View>
@@ -170,7 +170,7 @@ export default SignInScreen;
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#3c5898'
+      backgroundColor: '#2e8b57'
     },
     header: {
         flex: 1,
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
         fontSize: 30
     },
     text_footer: {
-        color: '#05375a',
+        color: '#212121',
         fontSize: 18
     },
     action: {

@@ -36,9 +36,9 @@ const SignInScreen = ({navigation}) => {
     return (
         <View style={{
             flex: 1,
-            backgroundColor: '#3c5898',
+            backgroundColor: '#2e8b57',
         }}>
-            <StatusBar backgroundColor='#3c5898' barStyle="light-content"/>
+            <StatusBar backgroundColor='#2e8b57' barStyle="light-content"/>
             <View style={{
                     flex: 1,
         	    justifyContent: 'flex-end',
@@ -155,7 +155,7 @@ const SignInScreen = ({navigation}) => {
 
 
                 <TouchableOpacity>
-                    <Text style={{color: '#3c5898', marginTop: 15}}>Forgot password?</Text>
+                    <Text style={{color: '#2e8b57', marginTop: 15}}>Forgot password?</Text>
                 </TouchableOpacity>
                 <View style={styles.button}>
                     <TouchableOpacity
@@ -163,7 +163,7 @@ const SignInScreen = ({navigation}) => {
                         onPress={_storeData}
                     >
                         <LinearGradient
-                            colors={['#3c5898', '#0088cc']}
+                            colors={['#2e8b57', '#00b488']}
                             style={styles.signIn}
                         >
                             <Text style={[styles.textSign, {
@@ -175,13 +175,13 @@ const SignInScreen = ({navigation}) => {
                     <TouchableOpacity
                         onPress={() => navigation.navigate('SignupScreen')}
                         style={[styles.signIn, {
-                            borderColor: '#3c5898',
+                            borderColor: '#2e8b57',
                             borderWidth: 1,
                             marginTop: 15,
                         }]}
                     >
                         <Text style={[styles.textSign, {
-                            color: '#3c5898',
+                            color: '#2e8b57',
                         }]}>Sign Up</Text>
                     </TouchableOpacity>
                 </View>

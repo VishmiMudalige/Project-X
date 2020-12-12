@@ -24,7 +24,7 @@ export default function BottomTab({navigation}) {
                 component={Browse}
                 options={{
                     tabBarLabel: 'Home',
-                    tabBarColor: '#3c5898',
+                    tabBarColor: '#2e8b57',
                     tabBarIcon: ({ color }) => (
                         <Icon name="ios-home" color={color} size={26} />
                     ),
@@ -35,7 +35,7 @@ export default function BottomTab({navigation}) {
                 component={Search}
                 options={{
                     tabBarLabel: 'Search',
-                    tabBarColor: '#3c5898',
+                    tabBarColor: '#2e8b57',
                     tabBarIcon: ({ color }) => (
                         <Icon name="ios-search" color={color} size={26} />
                     ),
@@ -46,7 +46,7 @@ export default function BottomTab({navigation}) {
                 component={Notifications}
                 options={{
                     tabBarLabel: 'Notifications',
-                    tabBarColor: '#3c5898',
+                    tabBarColor: '#2e8b57',
                     tabBarIcon: ({ color }) => (
                         <Icon name="ios-notifications" color={color} size={26} />
                     ),
@@ -58,7 +58,7 @@ export default function BottomTab({navigation}) {
                 component={Cart}
                 options={{
                     tabBarLabel: 'Cart',
-                    tabBarColor: '#3c5898',
+                    tabBarColor: '#2e8b57',
                     tabBarIcon: ({ color }) => (
                         <Icon name="ios-cart" color={color} size={26} />
                     ),

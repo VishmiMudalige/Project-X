@@ -3,7 +3,7 @@ import {Button, View, Text,StyleSheet, Image, StatusBar } from 'react-native';
 
 export default function LoadingScreen({navigation}) {
     return (
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center',backgroundColor: '#3c5898'}}>
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center',backgroundColor: '#2e8b57'}}>
             <Image
         style={styles.tinyLogo}
         source={require('./logo.png')}

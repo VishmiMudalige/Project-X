@@ -30,52 +30,52 @@ const Stack = createStackNavigator();
 
 const HomeStackScreen = ({navigation}) => (
     <HomeStack.Navigator screenOptions={{
-        headerStyle: {backgroundColor: '#3c5898'},
+        headerStyle: {backgroundColor: '#2e8b57'},
         headerTintColor: '#fff',
         headerTitleStyle: {fontWeight: 'normal'}
     }}>
-        <HomeStack.Screen name="Home" component={HomeScreen} options={{title: 'Home', headerLeft: () => (<Icon.Button name="ios-menu" size={25} backgroundColor="#3c5898" onPress={() => navigation.openDrawer()}/>) }} />
+        <HomeStack.Screen name="Home" component={HomeScreen} options={{title: 'Home', headerLeft: () => (<Icon.Button name="ios-menu" size={25} backgroundColor="#2e8b57" onPress={() => navigation.openDrawer()}/>) }} />
     </HomeStack.Navigator>
 );
 
 const ProfileStackScreen = ({navigation}) => (
     <ProfileStack.Navigator screenOptions={{
-        headerStyle: {backgroundColor: '#3c5898'},
+        headerStyle: {backgroundColor: '#2e8b57'},
         headerTintColor: '#fff',
         headerTitleStyle: {fontWeight: 'normal'}
     }}>
-        <ProfileStack.Screen name="Profile" component={Profile} options={{title: 'Profile', headerLeft: () => (<Icon.Button name="ios-menu" size={25} backgroundColor="#3c5898" onPress={() => navigation.openDrawer()}/>) }} />
+        <ProfileStack.Screen name="Profile" component={Profile} options={{title: 'Profile', headerLeft: () => (<Icon.Button name="ios-menu" size={25} backgroundColor="#2e8b57" onPress={() => navigation.openDrawer()}/>) }} />
     </ProfileStack.Navigator>
 );
 
 const PurchaseStackScreen = ({navigation}) => (
     <PurchaseStack.Navigator screenOptions={{
-        headerStyle: {backgroundColor: '#3c5898'},
+        headerStyle: {backgroundColor: '#2e8b57'},
         headerTintColor: '#fff',
         headerTitleStyle: {fontWeight: 'normal'}
     }}>
-        <PurchaseStack.Screen name="Purchase" component={Purchase} options={{title: 'Purchase', headerLeft: () => (<Icon.Button name="ios-menu" size={25} backgroundColor="#3c5898" onPress={() => navigation.openDrawer()}/>) }} />
+        <PurchaseStack.Screen name="Purchase" component={Purchase} options={{title: 'Purchase', headerLeft: () => (<Icon.Button name="ios-menu" size={25} backgroundColor="#2e8b57" onPress={() => navigation.openDrawer()}/>) }} />
     </PurchaseStack.Navigator>
 );
 
 
 const SettingsStackScreen = ({navigation}) => (
     <HelpStack.Navigator screenOptions={{
-        headerStyle: {backgroundColor: '#3c5898'},
+        headerStyle: {backgroundColor: '#2e8b57'},
         headerTintColor: '#fff',
         headerTitleStyle: {fontWeight: 'normal'}
     }}>
-        <HelpStack.Screen name="Settings" component={Settings} options={{title: 'Settings', headerLeft: () => (<Icon.Button name="ios-menu" size={25} backgroundColor="#3c5898" onPress={() => navigation.openDrawer()}/>) }} />
+        <HelpStack.Screen name="Settings" component={Settings} options={{title: 'Settings', headerLeft: () => (<Icon.Button name="ios-menu" size={25} backgroundColor="#2e8b57" onPress={() => navigation.openDrawer()}/>) }} />
     </HelpStack.Navigator>
 );
 
 const FeedBackStackScreen = ({navigation}) => (
     <LocateStack.Navigator screenOptions={{
-        headerStyle: {backgroundColor: '#3c5898'},
+        headerStyle: {backgroundColor: '#2e8b57'},
         headerTintColor: '#fff',
         headerTitleStyle: {fontWeight: 'normal'}
     }}>
-        <LocateStack.Screen name="Feedback" component={Feedback} options={{title: 'Feedback', headerLeft: () => (<Icon.Button name="ios-menu" size={25} backgroundColor="#3c5898" onPress={() => navigation.openDrawer()}/>) }} />
+        <LocateStack.Screen name="Feedback" component={Feedback} options={{title: 'Feedback', headerLeft: () => (<Icon.Button name="ios-menu" size={25} backgroundColor="#2e8b57" onPress={() => navigation.openDrawer()}/>) }} />
     </LocateStack.Navigator>
 );
 
@@ -90,7 +90,7 @@ const _retrieveData = async (key) => {
 
 export default function App() {
     StatusBar.setBarStyle('light-content', true);
-    StatusBar.setBackgroundColor('#3c5898');
+    StatusBar.setBackgroundColor('#2e8b57');
     
     
     const [isLoading, setIsLoading] = useState(true);
