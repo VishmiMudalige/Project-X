@@ -1,6 +1,8 @@
 import React, {useRef, useState, useEffect} from 'react';
 import Carousel, {ParallaxImage} from 'react-native-snap-carousel';
-import { human } from 'react-native-typography'
+import { human } from 'react-native-typography';
+import { PricingCard } from 'react-native-elements';
+import { Button, Overlay } from 'react-native-elements';
 
 import {
   View,
@@ -41,6 +43,14 @@ const ENTRIES1 = [
 const {width: screenWidth} = Dimensions.get('window');
 
 const MyCarousel = props => {
+
+  const [visible, setVisible] = useState(false);
+
+  const toggleOverlay = () => {
+    setVisible(!visible);
+  };
+
+
   const [entries, setEntries] = useState([]);
   const carouselRef = useRef(null);
 
@@ -64,8 +74,18 @@ const MyCarousel = props => {
           {...parallaxProps}
         />
         
-         <View style={{backgroundColor: '#e0e0e0', marginTop: -5,borderBottomLeftRadius: 5, borderBottomRightRadius: 5,}}><Text style={styles.title} numberOfLines={6}>
-          {item.title}
+         <View style={{backgroundColor: '#e0e0e0', marginTop: -5,borderBottomLeftRadius: 5, borderBottomRightRadius: 5}}><Text style={styles.title} numberOfLines={6}>
+          <PricingCard
+          onButtonPress={toggleOverlay}
+          containerStyle={{width: screenWidth - 60}}
+          pricingStyle={{color:'#000'}}
+  color="grey"
+  title="Round Iron"
+  price="Rs1200"
+  info={['Long products include billets, blooms, rebars, wire rod, sections, rails, sheet piles and drawn wire.']}
+  button={{ title: 'ADD TO CART', icon: 'rowing' }}
+/>
+
         </Text></View>
         
       </View>
@@ -90,7 +110,13 @@ const MyCarousel = props => {
         renderItem={renderItem}
         hasParallaxImages={true}
       />
-     
+          <View>
+
+
+      <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
+        <Text>Hello from Overlay!</Text>
+      </Overlay>
+    </View>
     </View>
   );
 };
@@ -103,7 +129,7 @@ const styles = StyleSheet.create({
   },
   item: {
     width: screenWidth - 60,
-    height: screenWidth - 120,
+    height: 500,
     marginLeft: -10,
   },
   imageContainer: {

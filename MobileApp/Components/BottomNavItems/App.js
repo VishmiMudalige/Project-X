@@ -5,17 +5,17 @@ import ItemsContainer from './components/ItemsContainer';
 import BasketContainer from './components/BasketComponent';
 import Footer from './components/Footer';
 
-export default function Cart({navigation}) {
+export default class Cart extends Component {
+  render() {
     return (
-        <View style={{ flex: 1 }}>
-         <Footer />
+      <View style={{ flex: 1 }}>
         <Header />
         <ItemsContainer />
         <BasketContainer />
-       
+        <Footer />
       </View>
+      
     );
+  }
 }
-
-
 

@@ -8,10 +8,10 @@ export default class BrowseSlider extends Component {
     super(props);
     this.state = {
       images: [
-        require("./Screenshot_2020-12-13_17-04-28.png"),
-        require("./Screenshot_2020-12-13_17-04-28.png"),
-        require("./Screenshot_2020-12-13_17-04-28.png"),
-        require("./Screenshot_2020-12-13_17-04-28.png"),
+        require("./1.jpg"),
+        require("./2.jpg"),
+        require("./3.jpg"),
+        require("./4.jpg"),
       ]
     };
   }
