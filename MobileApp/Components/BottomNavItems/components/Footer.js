@@ -3,10 +3,10 @@ import { View, Text } from 'react-native';
 import TotalComp from './TotalComponent';
 
 const Footer = () => {
-  const { 
-    containerStyle, 
-    buttonContainerStyle, 
-    closeButtonStyle, 
+  const {
+    containerStyle,
+    buttonContainerStyle,
+    closeButtonStyle,
     checkoutButtonStyle } = styles;
   return (
     <View style={containerStyle}>
@@ -43,9 +43,9 @@ const styles = {
     paddingRight: 30,
     paddingLeft: 30,
     borderRadius: 3,
-  }, 
+  },
   checkoutButtonStyle: {
-    backgroundColor: '#f39c12',
+    backgroundColor: '#ef5350',
     padding: 10,
     paddingRight: 60,
     paddingLeft: 60,

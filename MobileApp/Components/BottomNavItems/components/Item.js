@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import { Text, View, FlatList, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const image1 = require('../images/orange.jpg');
-const image2 = require('../images/tomato.jpg');
-const image3 = require('../images/salmon.jpg');
-const image4 = require('../images/greens.jpg');
-const image5 = require('../images/rye-bread.jpg');
 
 const data = [
 {

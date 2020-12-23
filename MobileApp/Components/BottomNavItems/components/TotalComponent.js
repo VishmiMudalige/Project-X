@@ -8,12 +8,12 @@ const TotalComponent = () => {
     <View style={containerStyle}>
       <View style={goodsStyle}>
         <Icon name="ios-cart" size={20} style={{ marginRight: 8 }} />
-        <Text>8 goods</Text>
+        <Text>4 items</Text>
       </View>
 
       <View style={totalStyle}>
         <Text>Total - </Text>
-        <Text>$300</Text>
+        <Text>Rs 12300</Text>
       </View>
     </View>
   );

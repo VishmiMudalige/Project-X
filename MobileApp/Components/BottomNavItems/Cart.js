@@ -8,11 +8,11 @@ import Footer from './components/Footer';
 export default function Cart({navigation}) {
     return (
         <View style={{ flex: 1 }}>
-         <Footer />
+        <Footer />
         <Header />
         <ItemsContainer />
         <BasketContainer />
-       
+
       </View>
     );
 }

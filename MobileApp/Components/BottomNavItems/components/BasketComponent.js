@@ -5,8 +5,8 @@ const BasketComponent = () => {
   const { basketContainerStyle, bagsTextStyle, priceTextStyle } = styles;
   return (
     <View style={basketContainerStyle}>
-      <Text style={bagsTextStyle}>2 bags</Text>
-      <Text style={priceTextStyle}>$1.50</Text>
+      <Text style={bagsTextStyle}>Current Bucket</Text>
+      <Text style={priceTextStyle}>Sumedha Hardware</Text>
     </View>
   );
 };
@@ -29,7 +29,7 @@ const styles = {
   },
   priceTextStyle: {
     fontSize: 12,
-  }, 
+  },
 };
 
 export default BasketComponent;

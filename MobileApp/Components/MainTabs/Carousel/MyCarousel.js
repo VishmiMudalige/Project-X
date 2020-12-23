@@ -3,6 +3,7 @@ import Carousel, {ParallaxImage} from 'react-native-snap-carousel';
 import { human } from 'react-native-typography';
 import { PricingCard } from 'react-native-elements';
 import { Button, Overlay } from 'react-native-elements';
+import ViewCart from "./../../ViewCart";
 
 import {
   View,
@@ -45,9 +46,12 @@ const {width: screenWidth} = Dimensions.get('window');
 const MyCarousel = props => {
 
   const [visible, setVisible] = useState(false);
+  const [visible1, setVisible1] = useState('');
 
-  const toggleOverlay = () => {
+
+  const toggleOverlay = (ss) => {
     setVisible(!visible);
+    setVisible1(ss)
   };
 
 
@@ -65,7 +69,6 @@ const MyCarousel = props => {
   const renderItem = ({item, index}, parallaxProps) => {
     return (
       <View style={styles.item}>
-        
         <ParallaxImage
           source={{uri: item.illustration}}
           containerStyle={styles.imageContainer}
@@ -73,10 +76,10 @@ const MyCarousel = props => {
           parallaxFactor={0.4}
           {...parallaxProps}
         />
-        
+
          <View style={{backgroundColor: '#e0e0e0', marginTop: -5,borderBottomLeftRadius: 5, borderBottomRightRadius: 5}}><Text style={styles.title} numberOfLines={6}>
           <PricingCard
-          onButtonPress={toggleOverlay}
+          onButtonPress={() => {toggleOverlay(item.illustration)}}
           containerStyle={{width: screenWidth - 60}}
           pricingStyle={{color:'#000'}}
   color="grey"
@@ -87,7 +90,7 @@ const MyCarousel = props => {
 />
 
         </Text></View>
-        
+
       </View>
     );
   };
@@ -96,7 +99,7 @@ const MyCarousel = props => {
     <View style={styles.container}>
       <TouchableOpacity onPress={goForward}>
         <View style={{margin:10, marginLeft: 15}}>
-           
+
           <Text style={{ fontFamily: 'Khmer Sangam MN', fontSize: 15, fontWeight: 'normal', color: 'grey' }}>St. Anthony's Hardware</Text>
 
         </View>
@@ -114,7 +117,7 @@ const MyCarousel = props => {
 
 
       <Overlay isVisible={visible} onBackdropPress={toggleOverlay}>
-        <Text>Hello from Overlay!</Text>
+        <ViewCart />
       </Overlay>
     </View>
     </View>
