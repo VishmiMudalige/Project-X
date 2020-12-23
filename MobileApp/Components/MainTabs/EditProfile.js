@@ -6,7 +6,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const SignInScreen = ({navigation}) => {
+const EditProfile = ({edit}) => {
 
     const [data, setData] = React.useState({
         username: '',
@@ -20,9 +20,7 @@ const SignInScreen = ({navigation}) => {
     return (
       <View style={styles.container}>
           <StatusBar backgroundColor='#2e8b57' barStyle="light-content"/>
-        <View style={styles.header}>
-            <Text style={styles.text_header}>Register</Text>
-        </View>
+        
         <Animatable.View
             animation="fadeInUpBig"
             style={styles.footer}
@@ -123,14 +121,15 @@ const SignInScreen = ({navigation}) => {
                     }
                 </TouchableOpacity>
             </View>
-            <View style={styles.textPrivate}>
+            {/*}<View style={styles.textPrivate}>
                 <Text style={styles.color_textPrivate}>
-                    By signing up you agree to our
+                    
                 </Text>
-                <Text style={[styles.color_textPrivate, {fontWeight: 'bold'}]}>{" "}Terms of service</Text>
-                <Text style={styles.color_textPrivate}>{" "}and</Text>
-                <Text style={[styles.color_textPrivate, {fontWeight: 'bold'}]}>{" "}Privacy policy</Text>
+                <Text style={[styles.color_textPrivate, {fontWeight: 'bold'}]}></Text>
+                <Text style={styles.color_textPrivate}></Text>
+                <Text style={[styles.color_textPrivate, {fontWeight: 'bold'}]}></Text>
             </View>
+            {*/}
             <View style={styles.button}>
                 <TouchableOpacity
                     style={styles.signIn}
@@ -142,12 +141,12 @@ const SignInScreen = ({navigation}) => {
                 >
                     <Text style={[styles.textSign, {
                         color:'#fff'
-                    }]}>Sign Up</Text>
+                    }]}>Update Profile</Text>
                 </LinearGradient>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={() => navigation.goBack()}
+                    onPress={() => edit(false)}
                     style={[styles.signIn, {
                         borderColor: '#00b488',
                         borderWidth: 1,
@@ -156,7 +155,7 @@ const SignInScreen = ({navigation}) => {
                 >
                     <Text style={[styles.textSign, {
                         color: '#00b488'
-                    }]}>Sign In</Text>
+                    }]}>Back to Profile</Text>
                 </TouchableOpacity>
             </View>
             </ScrollView>
@@ -165,7 +164,7 @@ const SignInScreen = ({navigation}) => {
     );
 };
 
-export default SignInScreen;
+export default EditProfile;
 
 const styles = StyleSheet.create({
     container: {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import TotalComp from './TotalComponent';
+import PaystackWebView from "react-native-paystack-webview";
 
 const Footer = () => {
   const {
@@ -17,7 +18,28 @@ const Footer = () => {
         </View>
 
         <View style={checkoutButtonStyle}>
-          <Text style={{ color: '#fff' }}>Go to checkout</Text>
+          <Text style={{ color: '#fff' }}>
+              <PaystackWebView
+        buttonText="Go to checkout"
+        showPayButton={true}
+        paystackKey="pk_test_f5a7f70af48cf43b113e6cd028705ff356c74eb8"
+        amount={120000}
+        billingEmail="paystackwebview@something.com"
+        billingMobile="09787377462"
+        billingName="Oluwatobi Shokunbi"
+        ActivityIndicatorColor="red"
+        SafeAreaViewContainer={{ marginTop: 25 }}
+        refNumber={3434343} // this is only for cases where you have a reference number generated
+        SafeAreaViewContainerModal={{ marginTop: 25 }}
+        onCancel={(e) => {
+          // handle response here
+        }}
+        onSuccess={(res) => {
+          // handle response here
+        }}
+        autoStart={false}
+      />
+          </Text>
         </View>
       </View>
     </View>
@@ -54,3 +76,6 @@ const styles = {
 };
 
 export default Footer;
+
+
+

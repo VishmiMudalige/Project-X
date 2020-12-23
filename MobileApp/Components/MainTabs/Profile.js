@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {View, SafeAreaView, StyleSheet, ScrollView} from 'react-native';
 import {
   Avatar,
@@ -9,14 +9,17 @@ import {
 } from 'react-native-paper';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import EditProfile from "./EditProfile";
 import Share from 'react-native-share';
 
 export default function Profile({navigation}) {
+    const [edit, setEdit] = React.useState(false);
+    
+   
 
     return (
         <ScrollView >
-        <SafeAreaView style={styles.container}>
+        { edit === true ?  <EditProfile  edit={setEdit}/> : <SafeAreaView style={styles.container}>
 
       <View style={styles.userInfoSection}>
         <View style={{flexDirection: 'row', marginTop: 15}}>
@@ -66,10 +69,10 @@ export default function Profile({navigation}) {
       </View>
 
       <View style={styles.menuWrapper}>
-        <TouchableRipple onPress={() => {}}>
+        <TouchableRipple onPress={() => {setEdit(true)}}>
           <View style={styles.menuItem}>
             <Icon name="heart-outline" color="#FF6347" size={25}/>
-            <Text style={styles.menuItemText}>Your Favorites</Text>
+            <Text style={styles.menuItemText}>Edit Profile</Text>
           </View>
         </TouchableRipple>
         <TouchableRipple onPress={() => {}}>
@@ -97,7 +100,8 @@ export default function Profile({navigation}) {
           </View>
         </TouchableRipple>
       </View>
-    </SafeAreaView>
+    </SafeAreaView> }
+        
         </ScrollView>
     );
 }
